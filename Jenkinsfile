@@ -3,9 +3,18 @@ pipeline {
 
     stages {
 
-        stage('Hello') {
+        stage('Build') {
             steps {
-                echo 'Hello from Jenkins!'
+                echo 'Starting build...'
+                sh 'echo Building application'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                sh 'echo Running tests'
+                sh 'test -f Jenkinsfile'
             }
         }
 
@@ -15,6 +24,13 @@ pipeline {
                 sh 'hostname'
                 sh 'git --version'
                 sh 'java -version'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                echo 'Creating package...'
+                sh 'tar -czf jenkins-demo.tar.gz Jenkinsfile'
             }
         }
     }
