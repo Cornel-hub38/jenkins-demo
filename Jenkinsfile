@@ -33,8 +33,8 @@ pipeline {
 
         stage('Package') {
             steps {
-                echo 'Creating package...'
-                sh 'tar -czf jenkins-demo.tar.gz Jenkinsfile'
+                echo 'Creating application package...'
+                sh 'tar -czf jenkins-demo.tar.gz app.py requirements.txt'
             }
         }
     }
