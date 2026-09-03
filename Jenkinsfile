@@ -10,13 +10,17 @@ pipeline {
             }
         }
 
+
         stage('Test') {
             steps {
-                echo 'Running tests... SCM 5 minute polling works, Hello from Jenkinsfile'
-                sh 'echo Running tests'
-                sh 'test -f Jenkinsfile'
+                echo 'Running Python tests...'
+                sh 'python3 -m venv .jenkins-venv'
+                sh '.jenkins-venv/bin/pip install -r requirements.txt'
+                sh '.jenkins-venv/bin/pytest'
             }
         }
+        
+
 
         stage('System Information') {
             steps {
