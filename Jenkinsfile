@@ -12,7 +12,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                echo 'Running tests...'
+                echo 'Running tests... SCM 5 minute polling works, Hello from Jenkinsfile'
                 sh 'echo Running tests'
                 sh 'test -f Jenkinsfile'
             }
