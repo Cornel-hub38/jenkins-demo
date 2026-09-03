@@ -5,8 +5,8 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo 'Starting build...'
-                sh 'echo Building application'
+                echo 'Building python application...'
+                sh 'python3 -m compileall app.py'
             }
         }
 
