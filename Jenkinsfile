@@ -38,16 +38,15 @@ pipeline {
             }
         }
 
-        stage('Test EC2 SSH') {
+        stage('Deploy to EC2') {
             steps {
                 sshagent(credentials: ['ec2-jenkins-deploy']) {
                     sh '''
-                        ssh -o StrictHostKeyChecking=no ubuntu@13.41.43.163 "hostname && whoami"
+                        scp -o StrictHostKeyChecking=no jenkins-demo.tar.gz ubuntu@13.41.43.163:/home/ubuntu/jenkins-demo/
                     '''
                 }
             }
-        }
-
+        } 
     }
 
 
