@@ -37,6 +37,17 @@ pipeline {
                 sh 'tar -czf jenkins-demo.tar.gz app.py requirements.txt'
             }
         }
+
+        stage('Test EC2 SSH') {
+            steps {
+                sshagent(credentials: ['ec2-jenkins-deploy']) {
+                    sh '''
+                        ssh -o StrictHostKeyChecking=no ubuntu@13.41.43.163 "hostname && whoami"
+                    '''
+                }
+            }
+        }
+
     }
 
 
